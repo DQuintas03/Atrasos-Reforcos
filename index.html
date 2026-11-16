@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Atrasos e reforços · TUB</title>
+<link rel="icon" href="logo-tub.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+<header class="cabeca" id="cabeca">
+  <div class="topo">
+    <div class="marca"><img src="logo-tub.png" alt="TUB"><div><h1>Atrasos e reforços</h1><span>Dias úteis</span></div></div>
+    <nav class="passos" id="passos" hidden>
+      <button data-p="1" class="on" title="Partidas, picos, zonas críticas e tabela de atrasos"><span class="n">1</span>Onde nascem as cascatas</button>
+      <button data-p="2" class="off" title="Onde reforçar, entrada e saída da viatura de reforço, horário proposto e relatório"><span class="n">2</span>Reforço</button>
+    </nav>
+    <label class="linhaSel" id="linhaSel" hidden title="Mudar de linha"><span class="num" id="numLinha"></span><select id="selLinha" aria-label="Linha"></select></label>
+  </div>
+  <div class="faixa" id="faixa" hidden>
+    <span id="faixaDados"></span>
+    <span id="notaPdf"></span>
+    <span id="chipDados"></span>
+    <span class="acoes"><label class="lnk" title="Juntar ou trocar o horário em PDF">Juntar horário PDF<input type="file" id="f3b" accept=".pdf" multiple hidden></label><button class="lnk" id="btTrocar">Trocar ficheiros</button></span>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="card" id="deck">
+    <div id="carregar">
+      <div class="field"><label for="f1">Viagens atrasadas (rep3)</label><input type="file" id="f1" accept=".csv"></div>
+      <div class="field"><label for="f2">Serviços (rep20)</label><input type="file" id="f2" accept=".csv"></div>
+      <div class="field"><label for="f3">Horário em PDF (recomendado)</label><input type="file" id="f3" accept=".pdf" multiple></div>
+      <span class="erro" id="erro"></span>
+    </div>
+  </section>
+
+  <div id="vista"></div>
+  <footer>Dias úteis · atrasos até 10 min ignorados · ocorrências acima de 3 h excluídas</footer>
+</main>
+
+<script src="analise.js"></script>
+<script src="sim.js"></script>
+<script src="horario.js"></script>
+<script src="escala.js"></script>
+<script src="excel.js"></script>
+<script src="diagnostico.js"></script>
+<script src="app.js"></script>
+<script src="tabela.js"></script>
+<script src="proposta.js"></script>
+<script src="hp.js"></script>
+<script src="relatorio.js"></script>
+</body>
+</html>
