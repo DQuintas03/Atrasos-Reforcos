@@ -21,7 +21,6 @@ input[type=file]{padding:6px 8px;height:auto;max-width:250px;font-size:12.5px}
 .btn.sec{background:#fff;color:var(--blue)}
 .chip{display:inline-flex;align-items:center;gap:6px;background:#e6f4ee;color:#07744a;border-radius:999px;padding:5px 12px;font-size:12.5px;font-weight:600}
 .chip.aviso{background:#fff3df;color:#8a5a00}
-#carregar{display:flex;flex-wrap:wrap;gap:14px;align-items:flex-end}
 .nota{font-size:12.5px;color:var(--muted)}
 .erro{color:var(--red);font-size:13px}
 
@@ -250,3 +249,36 @@ button.zi.on .tg::after{left:19px}
 .ctrl .v b small{display:block;font-size:10.5px;font-weight:600;color:var(--muted);text-align:center;line-height:1.1}
 table.hx td.vrc{background:#00b0f0}
 table.hx .est.fg{background:#e6f4fb;border-color:#9cd3ea;color:#0b6f87}
+
+/* capa (mockup A): título sóbrio, três cartões de ficheiro, Analisar */
+.capa{display:flex;flex-direction:column;align-items:center;text-align:center;padding:40px 0 10px}
+.capa .kick{margin-bottom:10px}
+.capaTit{margin:0;font-size:34px;line-height:1.15;letter-spacing:-.02em;color:var(--navy2)}
+.capaSub{margin:6px 0 0;font-size:19px;font-weight:600;color:var(--blue)}
+.capaLead{margin:14px 0 0;max-width:640px;font-size:15.5px;color:#3d5868}
+.fics{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;width:100%;max-width:980px;margin:30px 0 22px;text-align:left}
+.fic{position:relative;border:1.5px dashed #b9cbd4;border-radius:14px;background:#fff;padding:18px;display:flex;flex-direction:column;gap:8px;min-height:176px;cursor:pointer;transition:border-color .15s,background .15s}
+.fic:hover,.fic.sobre{border-color:var(--blue);background:#f7fbfd}
+.fic:focus-within{outline:3px solid rgba(13,133,181,.25);outline-offset:2px}
+.fic .n{width:28px;height:28px;border-radius:50%;background:var(--soft);border:1px solid var(--line);display:grid;place-items:center;font-weight:800;font-size:13px;color:var(--navy)}
+.fic h3{margin:0;font-size:15.5px;color:var(--navy2)}
+.fic p{margin:0;font-size:12.5px;color:var(--muted)}
+.fic .ficn{font-size:12.5px;font-weight:600;color:var(--ink);word-break:break-all}
+.fic .ficn small{color:var(--muted);font-weight:500}
+.fic .acao{margin-top:auto;font-size:13px;font-weight:700;color:var(--blue)}
+.fic .opc{position:absolute;top:16px;right:16px;font-size:10.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);background:var(--soft);border:1px solid var(--line);border-radius:6px;padding:1px 6px}
+.fic.ok{border-style:solid;border-color:#9ed8c0;background:#f4fbf7}
+.fic.ok .n{background:var(--green);border-color:var(--green);color:#fff;font-size:0}
+.fic.ok .n::after{content:'✓';font-size:14px}
+.fic.ok .acao{color:var(--green)}
+.btn.analisar{height:46px;padding:0 30px;font-size:15.5px;border-radius:10px}
+.btn.analisar[disabled]{background:#c9d6dc;border-color:#c9d6dc;cursor:not-allowed}
+.capaEstado{margin:8px 0 0}
+.capaEstado.erro{color:var(--red);font-weight:600}
+.capaPassos{display:flex;gap:28px;justify-content:center;margin-top:34px;flex-wrap:wrap}
+.capaPassos div{display:flex;gap:10px;align-items:flex-start;max-width:260px;text-align:left;font-size:13px;color:#3d5868}
+.capaPassos b{display:block;color:var(--navy2);font-size:13.5px}
+.capaPassos .ic{flex:none;width:30px;height:30px;border-radius:9px;background:#e6f4fb;color:var(--blue);display:grid;place-items:center;font-weight:800}
+.capaPriv{display:inline-flex;align-items:center;gap:8px;margin:30px 0 0;font-size:12.5px;color:var(--muted)}
+.capaPriv i{font-style:normal;width:18px;height:18px;border-radius:50%;background:#e6f6ee;color:var(--green);display:grid;place-items:center;font-size:11px;font-weight:800}
+@media (max-width:800px){.fics{grid-template-columns:1fr}.capaTit{font-size:28px}}

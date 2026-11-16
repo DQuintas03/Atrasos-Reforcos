@@ -21,9 +21,40 @@ async function carregar() {
     const [t1, t2] = await Promise.all([lerFicheiro(a), lerFicheiro(b)]);
     iniciar(Analise.analisar(t1, t2));
     $('erro').textContent = '';
-  } catch (e) { $('erro').textContent = e.message; }
+  } catch (e) { $('erro').textContent = e.message; $('erro').classList.add('erro'); }
 }
-$('f1').onchange = $('f2').onchange = carregar;
+// Capa: cada cartão mostra o ficheiro escolhido; "Analisar" só acende com o rep3 e o rep20.
+// Pode arrastar-se para um cartão, ou tudo de uma vez para a capa (o rep3 reconhece-se pelos cabeçalhos).
+const tamanho = (b) => (b > 1048576 ? (b / 1048576).toFixed(1).replace('.', ',') + ' MB' : Math.max(1, Math.round(b / 1024)) + ' KB');
+function estadoCapa() {
+  [['f1', 'c1', 'n1'], ['f2', 'c2', 'n2'], ['f3', 'c3', 'n3']].forEach(([f, c, n]) => {
+    const fs = [...$(f).files];
+    $(c).classList.toggle('ok', fs.length > 0);
+    $(n).innerHTML = fs.map((x) => `${x.name} <small>· ${tamanho(x.size)}</small>`).join('<br>');
+    $(c).querySelector('.acao').textContent = fs.length ? 'Trocar ficheiro' : f === 'f3' ? 'Escolher ou arrastar PDF' : 'Escolher ou arrastar ficheiro';
+  });
+  const falta = [!$('f1').files.length && 'o rep3', !$('f2').files.length && 'o rep20'].filter(Boolean);
+  $('btAnalisar').disabled = falta.length > 0;
+  $('erro').classList.remove('erro');
+  $('erro').textContent = falta.length ? `Falta${falta.length > 1 ? 'm' : ''} ${falta.join(' e ')}.` : 'Pronto a analisar.';
+}
+const porNoInput = (id, files) => { const dt = new DataTransfer(); files.forEach((f) => dt.items.add(f)); $(id).files = dt.files; $(id).dispatchEvent(new Event('change')); };
+$('f1').addEventListener('change', estadoCapa);
+$('f2').addEventListener('change', estadoCapa);
+$('f3').addEventListener('change', estadoCapa);
+$('btAnalisar').onclick = carregar;
+[['c1', 'f1'], ['c2', 'f2'], ['c3', 'f3']].forEach(([c, f]) => {
+  $(c).addEventListener('dragover', (e) => { e.preventDefault(); $(c).classList.add('sobre'); });
+  $(c).addEventListener('dragleave', () => $(c).classList.remove('sobre'));
+  $(c).addEventListener('drop', (e) => { e.preventDefault(); e.stopPropagation(); $(c).classList.remove('sobre'); const fs = [...e.dataTransfer.files]; if (fs.length) porNoInput(f, f === 'f3' ? fs : [fs[0]]); });
+});
+$('deck').addEventListener('dragover', (e) => e.preventDefault());
+$('deck').addEventListener('drop', async (e) => {
+  e.preventDefault();
+  const fs = [...e.dataTransfer.files], pdfs = fs.filter((f) => /\.pdf$/i.test(f.name)), csvs = fs.filter((f) => /\.csv$/i.test(f.name));
+  for (const f of csvs) { const cab = (await f.slice(0, 4000).text()); porNoInput(cab.includes('Hora inicial do Horário') ? 'f1' : 'f2', [f]); }
+  if (pdfs.length) porNoInput('f3', pdfs);
+});
 
 async function lerPdfs(buffers) {
   if (!window.pdfjsLib) await new Promise((ok, mal) => {

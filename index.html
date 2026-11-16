@@ -29,13 +29,24 @@
 </header>
 
 <main class="wrap">
-  <section class="card" id="deck">
-    <div id="carregar">
-      <div class="field"><label for="f1">Viagens atrasadas (rep3)</label><input type="file" id="f1" accept=".csv"></div>
-      <div class="field"><label for="f2">Serviços (rep20)</label><input type="file" id="f2" accept=".csv"></div>
-      <div class="field"><label for="f3">Horário em PDF (recomendado)</label><input type="file" id="f3" accept=".pdf" multiple></div>
-      <span class="erro" id="erro"></span>
+  <section class="capa" id="deck">
+    <div class="kick">Ferramenta de apoio ao planeamento · TUB</div>
+    <h2 class="capaTit">Onde nascem os atrasos?</h2>
+    <p class="capaSub">Identificar e resolver.</p>
+    <p class="capaLead">Junte os relatórios de uma linha. A ferramenta mostra onde o atraso começa e como passa de viagem em viagem, e propõe um reforço sem retirar partidas.</p>
+    <div class="fics" id="carregar">
+      <label class="fic" id="c1" for="f1"><span class="n">1</span><h3>Viagens atrasadas</h3><p>Relatório <b>rep3</b>, em CSV.</p><span class="ficn" id="n1"></span><span class="acao">Escolher ou arrastar ficheiro</span><input type="file" id="f1" accept=".csv" hidden></label>
+      <label class="fic" id="c2" for="f2"><span class="n">2</span><h3>Serviços</h3><p>Relatório <b>rep20</b>, em CSV, do mesmo período.</p><span class="ficn" id="n2"></span><span class="acao">Escolher ou arrastar ficheiro</span><input type="file" id="f2" accept=".csv" hidden></label>
+      <label class="fic" id="c3" for="f3"><span class="opc">Recomendado</span><span class="n">3</span><h3>Horário em PDF</h3><p>O horário oficial da linha. Sem ele, as partidas são tiradas dos dados.</p><span class="ficn" id="n3"></span><span class="acao">Escolher ou arrastar PDF</span><input type="file" id="f3" accept=".pdf" multiple hidden></label>
     </div>
+    <button class="btn analisar" id="btAnalisar" disabled>Analisar</button>
+    <p class="nota capaEstado" id="erro">Faltam o rep3 e o rep20.</p>
+    <div class="capaPassos">
+      <div><span class="ic">1</span><span><b>Onde nascem os atrasos</b>partidas do dia, mapa de calor e zonas críticas</span></div>
+      <div><span class="ic">2</span><span><b>Reforço</b>entrada e saída da viatura de reforço, com a sugestão de menos atrasos</span></div>
+      <div><span class="ic">3</span><span><b>Relatório em Excel</b>com gráficos, pronto a imprimir em A4</span></div>
+    </div>
+    <p class="capaPriv"><i aria-hidden="true">✓</i>Os ficheiros são lidos só neste computador; nada é enviado.</p>
   </section>
 
   <div id="vista"></div>
